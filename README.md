@@ -47,7 +47,12 @@ pip install -r requirements.txt
 4. Run the Flask app:
 python app.py
 
-5. Open in browser:
+## 🙌 Author
+
+Suchismita Ray  
+B.Tech Student | Data Science & AI Enthusiast
+
+6. Open in browser:
 http://127.0.0.1:5000/
 README.md
 
