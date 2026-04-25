@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Credit Card Default Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="bg"></div>
+
+<div class="container">
+
+    <!-- Top Navbar -->
+    <div class="topbar">
+        <div class="logo">⚡ CREDIT AI ⚡</div>
+        <div class="menu">
+            <a href="{{ url_for('home') }}" class="active">Home</a>
+            <a href="{{ url_for('results') }}">Results</a>
+            <a href="{{ url_for('analytics') }}">Analytics</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+
+        <div class="hero-text">
+            <h1>AI Powered Credit Default Prediction</h1>
+            <p>
+                Upload transaction dataset and let the machine learning model
+                predict default risk instantly with smart analytics.
+            </p>
+        </div>
+
+        <!-- Animated Credit Card -->
+        <div class="credit-card">
+            <div class="chip"></div>
+            <h3>CYBER CREDIT</h3>
+            <p class="number">**** **** **** 2026</p>
+            <span class="holder">AI MODEL</span>
+        </div>
+
+    </div>
+
+    <!-- Upload Box -->
+    <div class="card">
+
+        <p>
+            Upload a CSV file with credit card transaction data
+            to predict default risk.
+        </p>
+
+        {% if error %}
+            <p style="color:red;">{{ error }}</p>
+        {% endif %}
+
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <button type="submit">🚀 LAUNCH MODEL</button>
+        </form>
+
+    </div>
+
+    <!-- About Section -->
+    <div class="card">
+        <h2>About the Model</h2>
+        <p>
+            This AI system evaluates performance using Accuracy, ROC-AUC,
+            Precision, Recall, F1-score and visual analytics dashboard.
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

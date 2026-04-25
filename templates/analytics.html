@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Analytics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='analytics.css') }}">
+</head>
+<body>
+
+<div class="bg"></div>
+
+<div class="container">
+
+    <!-- Top Navbar -->
+    <div class="topbar">
+        <div class="logo">⚡ CREDIT CARD DEFAULT ⚡</div>
+        <div class="menu">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('results') }}">Results</a>
+            <a href="{{ url_for('analytics') }}" class="active">Analytics</a>
+        </div>
+    </div>
+
+    <h1 class="main-title">⚡ DATA ANALYTICS ⚡</h1>
+
+    {% if data and data.class_plot %}
+
+    <!-- Vertical Buttons -->
+    <div class="analytics-buttons">
+        <button onclick="showSection('class')">📊 Class Distribution</button>
+        <button onclick="showSection('feature')">🔥 Feature Importance</button>
+        <button onclick="showSection('heatmap')">🧠 Correlation Heatmap</button>
+    </div>
+
+    <!-- Class Distribution (Hidden Initially) -->
+    <div id="class" class="analytics-section">
+        <div class="card graph-card small-graph">
+            <h2>Class Distribution</h2>
+            <img src="data:image/png;base64,{{ data.class_plot }}">
+        </div>
+    </div>
+
+    <!-- Feature Importance -->
+    <div id="feature" class="analytics-section">
+        <div class="card graph-card">
+            <h2>Feature Importance</h2>
+            <img src="data:image/png;base64,{{ data.feature_plot }}">
+        </div>
+    </div>
+
+    <!-- Heatmap -->
+    <div id="heatmap" class="analytics-section">
+        <div class="card graph-card">
+            <h2>Correlation Heatmap</h2>
+            <img src="data:image/png;base64,{{ data.heatmap_plot }}">
+        </div>
+    </div>
+
+    {% else %}
+
+    <div class="card">
+        <h2>No Analytics Available</h2>
+        <p>Please upload a dataset and launch the model first.</p>
+        <a href="{{ url_for('home') }}">
+            <button>Go Back to Home</button>
+        </a>
+    </div>
+
+    {% endif %}
+
+</div>
+
+<script>
+function showSection(id) {
+
+    let sections = document.querySelectorAll('.analytics-section');
+    sections.forEach(sec => sec.classList.remove("active-section"));
+
+    document.getElementById(id).classList.add("active-section");
+}
+</script>
+
+</body>
+</html>

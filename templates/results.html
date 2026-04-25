@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Model Performance</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='results.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- 🔥 Background With Flask Image -->
+<div class="bg"></div>
+
+<div class="container">
+
+<div class="topbar">
+    <div class="logo">⚡ CREDIT AI ⚡</div>
+    <div class="menu">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('results') }}" class="active">Results</a>
+        <a href="{{ url_for('analytics') }}">Analytics</a>
+    </div>
+</div>
+
+<h1 class="main-title">⚡ MODEL PERFORMANCE DASHBOARD ⚡</h1>
+
+{% if data and data.accuracy %}
+
+<div class="performance-card">
+<div class="performance-grid">
+
+<!-- LEFT PANEL -->
+<div class="left-panel">
+
+<h3>Model Accuracy</h3>
+
+<div class="circle-wrap">
+    <div class="circle">
+        <div class="mask full"
+             style="transform: rotate({{ data.accuracy * 1.8 }}deg);">
+        </div>
+        <div class="mask half"></div>
+        <div class="inside-circle">
+            <span id="accuracyCounter">{{ data.accuracy }}</span>%
+        </div>
+    </div>
+</div>
+
+<div class="score-box">
+    <h4>ROC-AUC Score</h4>
+    <strong>{{ data.roc }}</strong>
+</div>
+
+<div class="risk-box">
+    <h4>Risk Assessment</h4>
+    {% if data.accuracy > 85 %}
+        <p style="color:#00ff9c;">Model Performance: HIGH</p>
+    {% elif data.accuracy > 70 %}
+        <p style="color:yellow;">Model Performance: MEDIUM</p>
+    {% else %}
+        <p style="color:red;">Model Performance: LOW</p>
+    {% endif %}
+</div>
+
+</div>
+
+<!-- RIGHT PANEL -->
+<div class="right-panel">
+
+<h3>ROC Curve</h3>
+<div class="graph-box">
+<img src="data:image/png;base64,{{ data.roc_plot }}" class="graph-img">
+</div>
+
+<div class="metrics">
+<div class="metric-card good">
+<h4>Precision</h4>
+<p>{{ data.precision }}</p>
+</div>
+
+<div class="metric-card medium">
+<h4>Recall</h4>
+<p>{{ data.recall }}</p>
+</div>
+
+<div class="metric-card good">
+<h4>F1 Score</h4>
+<p>{{ data.f1 }}</p>
+</div>
+</div>
+
+<h3 style="margin-top:40px;">Confusion Matrix</h3>
+<div class="graph-box">
+<img src="data:image/png;base64,{{ data.cm_plot }}" class="graph-img">
+</div>
+
+</div>
+</div>
+</div>
+
+{% else %}
+
+<div class="performance-card" style="text-align:center;">
+<h2>No Model Results Found</h2>
+<p>Please upload dataset and run the model first.</p>
+<a href="{{ url_for('home') }}"><button>Go Back</button></a>
+</div>
+
+{% endif %}
+
+</div>
+
+<script>
+let counter = document.getElementById("accuracyCounter");
+if(counter){
+let target = parseInt(counter.innerText);
+let count = 0;
+let interval = setInterval(() => {
+    if(count >= target){
+        clearInterval(interval);
+    } else {
+        count++;
+        counter.innerText = count;
+    }
+}, 20);
+}
+</script>
+
+</body>
+</html>

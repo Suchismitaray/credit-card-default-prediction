@@ -1,0 +1,198 @@
+/* ============================= */
+/* 🌌 DARK CYBER BACKGROUND */
+/* ============================= */
+
+html, body {
+    margin: 0;
+    padding: 0;
+    color: #00ff9c;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+/* 🔥 Background Image Layer */
+.bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+
+    background:
+        linear-gradient(rgba(0,0,0,0.75), rgba(0,15,10,0.85)),
+        url("/static/images/cyber-card.jpeg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    animation: slowZoom 20s infinite alternate ease-in-out;
+}
+
+/* Subtle Zoom Animation */
+@keyframes slowZoom {
+    from { background-size: 100%; }
+    to { background-size: 110%; }
+}
+
+/* Extra Dark Overlay */
+.bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.9));
+}
+
+/* Container */
+.container {
+    position: relative;
+    z-index: 2;
+    padding: 40px 60px;
+}
+
+/* ============================= */
+/* 🔥 TOPBAR */
+/* ============================= */
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.menu {
+    display: flex;
+    gap: 35px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #00ff9c;
+    font-weight: 500;
+    transition: 0.3s ease;
+}
+
+.menu a:hover {
+    color: white;
+    text-shadow: 0 0 12px #00ff9c;
+}
+
+.menu a.active {
+    border-bottom: 2px solid #00ff9c;
+    padding-bottom: 4px;
+}
+
+/* ============================= */
+/* 🔵 Circular Progress */
+/* ============================= */
+
+.circle-wrap {
+    width: 200px;
+    height: 200px;
+    margin: 40px auto;
+    position: relative;
+}
+
+.circle {
+    width: 100%;
+    height: 100%;
+    background: #0a0a0a;
+    border-radius: 50%;
+    box-shadow: 0 0 40px #00ff9c55;
+}
+
+.mask {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 50%;
+    clip: rect(0px, 200px, 200px, 100px);
+    background: #00ff9c;
+    box-shadow: 0 0 25px #00ff9c, 0 0 60px #00ff9c;
+}
+
+.inside-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: #000;
+    line-height: 150px;
+    text-align: center;
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    font-size: 34px;
+    font-weight: bold;
+    box-shadow: 0 0 25px #00ff9c inset;
+    text-shadow: 0 0 15px #00ff9c;
+}
+
+/* ============================= */
+/* 📊 Metric Cards */
+/* ============================= */
+
+.metrics {
+    display: flex;
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.metric-card {
+    flex: 1;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    transition: 0.4s ease;
+
+    background: rgba(0, 255, 156, 0.08);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 255, 156, 0.3);
+}
+
+.metric-card h4 {
+    margin-bottom: 10px;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.metric-card p {
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+}
+
+.metric-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 35px #00ff9c;
+}
+
+/* ============================= */
+/* ⚠ Risk Box */
+/* ============================= */
+
+.risk-box {
+    margin-top: 50px;
+    padding: 30px;
+    border-radius: 15px;
+    background: rgba(0,255,156,0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid #00ff9c55;
+    text-align: center;
+    box-shadow: 0 0 40px #00ff9c33;
+}
+
+.risk-box h2 {
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.risk-box p {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
