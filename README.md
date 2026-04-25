@@ -28,5 +28,10 @@ A Machine Learning based web application that predicts whether a customer is lik
 ---
 
 ## 📂 Project Structure
+app.py
+templates/
+static/
+requirements.txt
+README.md
 
 
